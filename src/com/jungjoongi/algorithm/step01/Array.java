@@ -38,6 +38,14 @@ public class Array {
     	arr[cursor] = arr[length-cursor];
     	arr[length-cursor] = temp;
     }
+    
+    
+    /*
+     * Result *******************************
+     * befor :: 1 6 2 3 5 12 53 7234 123 5 12 
+	 * after :: 12 5 123 7234 53 12 5 3 2 6 1 
+     * **************************************
+     */
 
     
 }
