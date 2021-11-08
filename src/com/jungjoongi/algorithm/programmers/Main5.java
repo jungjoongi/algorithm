@@ -1,4 +1,4 @@
-package com.jungjoongi.algorithm.programers;
+package com.jungjoongi.algorithm.programmers;
 
 import java.util.*;
 

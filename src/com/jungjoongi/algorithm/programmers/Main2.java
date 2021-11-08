@@ -1,7 +1,4 @@
-package com.jungjoongi.algorithm.programers;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.jungjoongi.algorithm.programmers;
 
 public class Main2 {
 

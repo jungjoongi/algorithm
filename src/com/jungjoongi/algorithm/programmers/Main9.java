@@ -1,8 +1,6 @@
-package com.jungjoongi.algorithm.programers;
+package com.jungjoongi.algorithm.programmers;
 
 import java.util.Arrays;
-import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class Main9 {
 

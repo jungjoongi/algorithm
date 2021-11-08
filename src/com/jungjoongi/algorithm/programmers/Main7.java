@@ -1,7 +1,6 @@
-package com.jungjoongi.algorithm.programers;
+package com.jungjoongi.algorithm.programmers;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Main7 {
 

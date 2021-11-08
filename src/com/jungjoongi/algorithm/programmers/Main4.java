@@ -1,6 +1,4 @@
-package com.jungjoongi.algorithm.programers;
-
-import java.util.Arrays;
+package com.jungjoongi.algorithm.programmers;
 
 public class Main4 {
 

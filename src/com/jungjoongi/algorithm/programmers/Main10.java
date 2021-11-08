@@ -1,7 +1,6 @@
-package com.jungjoongi.algorithm.programers;
+package com.jungjoongi.algorithm.programmers;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class Main10 {
