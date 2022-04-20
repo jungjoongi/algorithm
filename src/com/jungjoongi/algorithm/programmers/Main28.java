@@ -50,6 +50,7 @@ public class Main28 {
     }
 }
 
+
 class Node {
     private int x;
     private int y;
@@ -78,4 +79,5 @@ class Node {
         return count;
     }
 }
+
 
