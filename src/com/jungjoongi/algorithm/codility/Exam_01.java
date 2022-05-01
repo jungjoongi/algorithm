@@ -38,6 +38,5 @@ class Main {
     public static void main(String[] args) {
         Exam_01 e = new Exam_01();
         System.out.println(e.solution(1024));
-        //e.solution(222);
     }
 }

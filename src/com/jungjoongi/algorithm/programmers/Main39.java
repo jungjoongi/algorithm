@@ -2,91 +2,104 @@ package com.jungjoongi.algorithm.programmers;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main39 {
 
     public static void main(String[] args) {
-        solution("100-200*300-500+20");
+        Arrays.stream(solution(new String[]{"classic", "pop", "classic", "classic", "pop"}, new int[]{500, 2500, 150, 800, 2500})).forEach(System.out::println);
 
     }
 
+    public static int[] solution(String[] genres, int[] plays) {
 
+        Map<String, Integer> genreMap = new HashMap<>();
+        List<String> priorityGenreList = new ArrayList<>();
 
-    public static long solution(String expression) {
-
-
-        char[] expressionCharArray = expression.toCharArray();
-        List<String> num = new ArrayList<>();
-        List<String> operation = new ArrayList<>();
-        Queue<String> queue = new LinkedList();
-
-        StringBuilder number = new StringBuilder();
-        int count = 0;
-        for(char c : expressionCharArray) {
-            number.append(c);
-            if(c == '+' || c == '-' || c == '*') {
-                num.add(number.delete(number.length()-1, number.length()).toString());
-                number = new StringBuilder();
-                operation.add(Character.toString(c));
-            }
-            if(count == expressionCharArray.length - 1) {
-                num.add(number.toString());
-            }
-            count++;
+        for(int i = 0; i < genres.length; i++) {
+            genreMap.put(genres[i], genreMap.getOrDefault(genres[i], 0) + plays[i]);
         }
 
+        while (genreMap.size() > 0) {
+            int max = 0;
+            String indexKey = "";
+            for(String key : genreMap.keySet()) {
+                int value = genreMap.get(key);
 
-        for(int i = 0; i < operation.size(); i++) {
-            queue.offer(num.get(i));
-            queue.offer(operation.get(i));
-        }
-        queue.offer(num.get(num.size()-1));
-
-        operation(queue, "*");
-        long answer = 0;
-        return answer;
-    }
-
-    public static int getMax(List<Integer> num, List<String> operation) {
-
-        return 1;
-    }
-
-    public static void operation(Queue<String> q, String exp) {
-        System.out.println("------");
-        q.forEach(System.out::println);
-        System.out.println("------");
-
-        for(int n = 0; n < 3; n++) {
-            String preTemp = "";
-            String temp = "";
-            for(int i = 0; i < q.size(); i++) {
-                preTemp = q.poll();
-                temp = q.poll();
-                int num = 0;
-
-                System.out.println("------");
-                q.forEach(System.out::println);
-                System.out.println("------");
-
-                if(exp.equals(temp)) {
-                    if("*".equals(exp)) {
-                        num = Integer.parseInt(preTemp) * Integer.parseInt(q.poll());
-                    } else if("+".equals(exp)) {
-                        num = Integer.parseInt(preTemp) + Integer.parseInt(q.poll());
-                    } else if("-".equals(exp)) {
-                        num = Integer.parseInt(preTemp) - Integer.parseInt(q.poll());
-                    }
-                    q.offer(Integer.toString(num));
-                } else {
-                    q.offer(temp);
-                    q.offer(preTemp);
-
+                if(value > max) {
+                    indexKey = key;
+                    max = value;
                 }
             }
+            priorityGenreList.add(indexKey);
+            genreMap.remove(indexKey);
         }
 
+        List<Integer> result = new ArrayList<>();
+        for(String genre : priorityGenreList) {
 
+            List<Music> resultList = new ArrayList<>();
+            for(int i = 0; i < genres.length; i++) {
+                if(genre.equals(genres[i])) {
+                    resultList.add(new Music(genres[i], plays[i], i ));
+                }
+            }
+            resultList = resultList.stream().sorted((s1, s2) -> {
+                return s2.getPlay() - s1.getPlay();
+            }).sorted((s1, s2) -> {
+                if(s1.getPlay() == s2.getIndex()) {
+                    return s1.getIndex() - s2.getIndex();
+                } else {
+                    return s2.getPlay() - s1.getPlay();
+                }
+            }).collect(Collectors.toList());
 
+            if(resultList.size() < 3) {
+                for(Music music : resultList) {
+                    result.add(music.getIndex());
+                }
+            } else {
+                result.add(resultList.get(0).getIndex());
+                result.add(resultList.get(1).getIndex());
+            }
+        }
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+}
+
+class Music {
+    private String genre;
+    private int play;
+    private int index;
+
+    public Music(String genre, int play, int index) {
+        this.genre = genre;
+        this.play = play;
+        this.index = index;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public int getPlay() {
+        return play;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
+    public void setPlay(int play) {
+        this.play = play;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }
