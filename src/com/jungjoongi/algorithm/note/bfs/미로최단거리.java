@@ -1,9 +1,9 @@
-package com.jungjoongi.algorithm.programmers.test;
+package com.jungjoongi.algorithm.note.bfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Skill_Check_04 {
+public class 미로최단거리 {
     public static void main(String[] args) {
 
         
